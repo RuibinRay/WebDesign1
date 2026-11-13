@@ -23,6 +23,7 @@ Palette: sand `#FFF3DC`, ocean ink `#0A3A44`, turquoise `#19C2B8`, coral `#FF6B4
   - `hf-lib.ps1`, `gen-images.ps1`, `gen-loops.ps1`: scripts that run the prompts through the Higgsfield CLI.
 - `tools/make-frames.ps1`: splits a film into frame images and records it in `assets/frames/frames.json`.
 - `tools/make-ad.ps1`: edits the commercial (`assets/ad/hola-ola-ad.mp4`) from the films, the end card and the music.
+- `tools/make-ad-vertical.ps1`: edits the 9:16 cut of the commercial for Reels, TikTok and Shorts (`assets/ad/hola-ola-ad-vertical.mp4`), reusing the wide ad's soundtrack.
 - `tools/serve.ps1`: local preview server.
 
 Images were made with GPT Image 2.6 and video with Kling 4.0 at 1080p, both through Higgsfield. Music is Sonilo.
