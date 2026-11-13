@@ -209,6 +209,9 @@
   }
 
   /* ---------- 3. scroll films: each pinned section scrubs its own frame sequence ---------- */
+  // Version tag on every frame URL. Browsers keep GitHub Pages files for 10 minutes, so after re-cutting
+  // frames bump this number here, in the ?v= links in index.html and in the poster URLs in css/style.css.
+  const ASSET_V = '2';
   const films = [];
   let manifest = null;
   const getManifest = () => manifest || (manifest = fetch('assets/frames/frames.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : {}).catch(() => ({})));
@@ -239,7 +242,7 @@
       const im = new Image(); im.decoding = 'async';
       im.onload = () => { seq.imgs[i] = im; seq.ok[i] = 1; seq.dirty = true; res(im); };
       im.onerror = rej;
-      im.src = `${seq.dir}/f_${String(i + 1).padStart(seq.pad, '0')}.${seq.ext}`;
+      im.src = `${seq.dir}/f_${String(i + 1).padStart(seq.pad, '0')}.${seq.ext}?v=${ASSET_V}`;
     });
     // load the rest coarse-to-fine so scrubbing works almost immediately
     function loadRest() {

@@ -107,13 +107,14 @@ a { color: inherit; }
 .film[hidden] { display: none; }
 .film__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #E8D3EE; --p: 0; }
 /* each film's first frame is its poster, so the section is never blank while frames load */
-#film .film__sticky { background: #E8D3EE url("../assets/frames/day/d/f_0001.webp") center / cover no-repeat; }
-#burst .film__sticky { background: #BFEDEA url("../assets/frames/burst/d/f_0001.webp") center / cover no-repeat; }
-#crack .film__sticky { background: #3A2418 url("../assets/frames/crack/d/f_0001.webp") center / cover no-repeat; }
+/* the ?v= must match ASSET_V in js/main.js so the poster and the first frame are one download */
+#film .film__sticky { background: #E8D3EE url("../assets/frames/day/d/f_0001.webp?v=2") center / cover no-repeat; }
+#burst .film__sticky { background: #BFEDEA url("../assets/frames/burst/d/f_0001.webp?v=2") center / cover no-repeat; }
+#crack .film__sticky { background: #3A2418 url("../assets/frames/crack/d/f_0001.webp?v=2") center / cover no-repeat; }
 @media (max-width: 860px) and (orientation: portrait) {
-  #film .film__sticky { background-image: url("../assets/frames/day/m/f_0001.webp"); }
-  #burst .film__sticky { background-image: url("../assets/frames/burst/m/f_0001.webp"); }
-  #crack .film__sticky { background-image: url("../assets/frames/crack/m/f_0001.webp"); }
+  #film .film__sticky { background-image: url("../assets/frames/day/m/f_0001.webp?v=2"); }
+  #burst .film__sticky { background-image: url("../assets/frames/burst/m/f_0001.webp?v=2"); }
+  #crack .film__sticky { background-image: url("../assets/frames/crack/m/f_0001.webp?v=2"); }
 }
 .film__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 
