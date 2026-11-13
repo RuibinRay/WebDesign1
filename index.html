@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hola Ola · Sparkling Beach Soda</title>
+  <meta name="description" content="Hola Ola is a lightly sparkling beach soda made with real fruit. Six flavors, one for every hour of a long day by the sea.">
+  <meta name="theme-color" content="#FFF3DC">
+  <meta property="og:title" content="Hola Ola · Sparkling Beach Soda">
+  <meta property="og:description" content="The beach, canned. Six flavors, one for every hour of a long day by the sea.">
+  <meta property="og:image" content="https://ruibinray.github.io/WebDesign1/assets/brand/og.jpg">
+  <meta property="og:url" content="https://ruibinray.github.io/WebDesign1/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/frames/day/d/f_0001.webp" media="(min-width: 861px), (orientation: landscape)">
+  <link rel="preload" as="image" href="assets/frames/day/m/f_0001.webp" media="(max-width: 860px) and (orientation: portrait)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Shrikhand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#flavors">Skip to the flavors</a>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand wordmark" href="#top" aria-label="Hola Ola, back to top">Hola Ola</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#flavors">Flavors</a>
+      <a href="#inside">Inside</a>
+      <a href="#coast">The coast</a>
+      <a href="#rules">Beach rules</a>
+    </nav>
+    <div class="nav__right">
+      <span class="clock" title="Beach time"><i class="clock__dot" id="clockDot"></i><b id="clockTime">5:30 AM</b><span id="clockPhase">Dawn</span></span>
+      <a class="btn btn--small" href="#find">Find us</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ SCROLL FILM: a whole beach day in one take ============ -->
+    <section class="film" id="film" data-film="day" aria-label="A whole beach day, from sunrise to night">
+      <div class="film__sticky">
+        <canvas class="film__canvas" aria-hidden="true"></canvas>
+
+        <div class="chapter chapter--hero ch-dark" data-in="-1" data-out="0.11">
+          <p class="eyebrow">Sparkling beach soda · Made by the Pacific</p>
+          <h1 class="hero__title"><span>The beach,</span> <span>canned.</span></h1>
+          <div class="hero__bottom">
+            <div class="hero__pitch">
+              <p class="hero__lede">Real fruit, a little fizz and not much else. Six flavors, one for every hour of a long day by the sea.</p>
+              <a class="btn" href="#flavors">Meet the flavors</a>
+            </div>
+            <span class="scrollcue"><i></i>Scroll to start the day</span>
+          </div>
+        </div>
+
+        <div class="chapter chapter--side chapter--left ch-dark" data-in="0.16" data-out="0.40">
+          <p class="chapter__time">7:10 AM · Morning</p>
+          <h2>Made for long days.</h2>
+          <p>Hola Ola starts at sunrise and keeps going. Lightly sparkling, never syrupy, made for bare feet, early tides and the first swim of the day.</p>
+        </div>
+
+        <div class="chapter chapter--side chapter--right ch-dark" style="--scrim:rgba(255,226,170,.6)" data-in="0.48" data-out="0.70">
+          <p class="chapter__time">5:20 PM · Golden hour</p>
+          <h2>Six flavors.<br>One long day.</h2>
+          <p>Coffee at dawn, lime at low tide, piña colada at noon. Every can belongs to an hour.</p>
+          <ol class="dayline" id="dayline">
+            <li style="--c:#4B2E23"><span>6 AM</span>Dawn Patrol</li>
+            <li style="--c:#B8E356"><span>9 AM</span>Low Tide Lime</li>
+            <li style="--c:#FFD447"><span>Noon</span>Piña Colada</li>
+            <li style="--c:#FF9A2E"><span>4 PM</span>Golden Set</li>
+            <li style="--c:#FF4F81"><span>6 PM</span>Sunset Sandía</li>
+            <li style="--c:#3DE0FF"><span>9 PM</span>Midnight Mora</li>
+          </ol>
+        </div>
+
+        <div class="chapter chapter--side chapter--left ch-light" data-in="0.80" data-out="2">
+          <p class="chapter__time">8:50 PM · After dark</p>
+          <h2>Stay for the glow.</h2>
+          <p>When the water lights up blue there is still one flavor left to open.</p>
+          <a class="btn btn--glow" href="#flavors">Pick your hour</a>
+        </div>
+
+        <div class="dayclock" aria-hidden="true">
+          <div class="dayclock__line"><i></i></div>
+          <span class="dayclock__sun" id="daySun"></span>
+          <span class="dayclock__tick" style="--at:.06">Dawn</span>
+          <span class="dayclock__tick" style="--at:.40">Midday</span>
+          <span class="dayclock__tick" style="--at:.60">Golden hour</span>
+          <span class="dayclock__tick" style="--at:.92">Night</span>
+        </div>
+
+        <p class="film__note" hidden>Animatic preview · the Higgsfield film drops in here</p>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Salt</span><i></i><span>Sun</span><i></i><span>Fizz</span><i></i><span>Real fruit</span><i></i><span>Hola Ola</span><i></i><span>Bare feet</span><i></i>
+        <span>Salt</span><i></i><span>Sun</span><i></i><span>Fizz</span><i></i><span>Real fruit</span><i></i><span>Hola Ola</span><i></i><span>Bare feet</span><i></i>
+      </div>
+    </div>
+
+    <!-- ============ FLAVORS ============ -->
+    <section class="flavors" id="flavors" aria-labelledby="flavorsTitle">
+      <div class="flavors__head">
+        <p class="eyebrow">The lineup</p>
+        <h2 class="display" id="flavorsTitle">Pick your hour.</h2>
+        <p class="flavors__now" id="flavorNow"></p>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="stage__sun" aria-hidden="true"><video class="stage__loop" id="fLoop" muted loop playsinline preload="none"></video></div>
+
+        <div class="stage__info" aria-live="polite">
+          <p class="stage__time" id="fTime"></p>
+          <h3 class="stage__name" id="fName"></h3>
+          <p class="stage__sub" id="fSub"></p>
+          <p class="stage__desc" id="fDesc"></p>
+          <ul class="stage__notes" id="fNotes"></ul>
+        </div>
+
+        <div class="stage__canwrap">
+          <img class="stage__fruit" id="fFruit" alt="" hidden>
+          <div class="stage__can" id="fCan"></div>
+        </div>
+
+        <dl class="stage__facts" id="fFacts"></dl>
+
+        <button class="stage__arrow stage__arrow--prev" id="fPrev" aria-label="Earlier flavor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="stage__arrow stage__arrow--next" id="fNext" aria-label="Later flavor"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+
+      <div class="dial" id="dial" role="tablist" aria-label="Flavors by time of day"></div>
+
+      <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 C 180 6, 360 86, 540 46 S 900 6, 1080 46 S 1320 86, 1440 46 V90 H0Z"/></svg>
+    </section>
+
+    <!-- ============ SCROLL FILM: the fruit burst ============ -->
+    <section class="film film--short" id="burst" data-film="burst" aria-label="Real fruit bursting out of the water around the can">
+      <div class="film__sticky">
+        <canvas class="film__canvas" aria-hidden="true"></canvas>
+
+        <div class="chapter chapter--side chapter--corner chapter--card ch-dark" data-in="0.03" data-out="2">
+          <p class="chapter__time">Feature 01 · What goes in</p>
+          <h2>Real fruit.<br>Real fizz.</h2>
+          <p>Everything the wave throws in the air is in the can. Keep scrolling and watch it land.</p>
+        </div>
+
+        <div class="chapter chapter--pins" data-in="0.45" data-out="2">
+          <ul class="pins">
+            <li class="l" style="--x:33%;--y:22%;--i:0">Pineapple</li>
+            <li class="l" style="--x:28%;--y:38%;--i:2">Coconut water</li>
+            <li class="l" style="--x:33%;--y:54%;--i:4">Mango</li>
+            <li class="r" style="--x:67%;--y:22%;--i:1">Passion fruit</li>
+            <li class="r" style="--x:72%;--y:38%;--i:3">Tarrazú cold brew</li>
+            <li class="r" style="--x:67%;--y:54%;--i:5">A pinch of sea salt</li>
+          </ul>
+        </div>
+
+        <p class="film__note" hidden>Animatic preview · the Higgsfield film drops in here</p>
+      </div>
+    </section>
+
+    <!-- ============ INSIDE ============ -->
+    <section class="inside" id="inside" aria-labelledby="insideTitle">
+      <img class="float float--splash" data-opt src="assets/elements/splash.webp" alt="" loading="lazy">
+      <img class="float float--fruit" data-opt src="assets/elements/pina-colada.webp" alt="" loading="lazy">
+      <div class="inside__copy" data-reveal>
+        <p class="eyebrow">Inside the can</p>
+        <h2 class="display" id="insideTitle">Nothing to hide under the lid.</h2>
+        <p class="lede">We started with a blender, a cooler and a rule: if it does not grow near the beach, it does not go in. That is still the whole recipe.</p>
+        <ul class="ticks">
+          <li><b>Real fruit juice.</b> Pressed, not flavored.</li>
+          <li><b>Coconut water</b> for body instead of syrup.</li>
+          <li><b>A pinch of Pacific sea salt.</b> It makes the fruit louder.</li>
+          <li><b>Gentle bubbles.</b> Closer to sea foam than to soda pop.</li>
+        </ul>
+      </div>
+      <div class="facts" data-reveal>
+        <div class="facts__tab">Per can · 355 ml</div>
+        <h3>Beach Facts</h3>
+        <dl>
+          <div><dt>Calories</dt><dd><span data-count="35">0</span></dd></div>
+          <div><dt>Sugar</dt><dd><span data-count="5">0</span> g</dd></div>
+          <div><dt>Fake sweeteners</dt><dd>0</dd></div>
+          <div><dt>Artificial colors</dt><dd>0</dd></div>
+          <div><dt>Recyclable can</dt><dd><span data-count="100">0</span>%</dd></div>
+          <div><dt>Sand between toes</dt><dd>Plenty</dd></div>
+        </dl>
+        <p class="facts__foot">Shake gently. Drink cold. Leave only footprints.</p>
+      </div>
+    </section>
+
+    <!-- ============ THE COAST (horizontal postcards) ============ -->
+    <section class="coast" id="coast" aria-labelledby="coastTitle">
+      <div class="coast__sticky">
+        <div class="coast__track" id="coastTrack">
+          <div class="coast__intro">
+            <p class="eyebrow">The coast</p>
+            <h2 class="display" id="coastTitle">Postcards from a very long day.</h2>
+            <p>Hola Ola comes from a stretch of Pacific sand in Costa Rica where nobody checks the time. We just watch the tide.</p>
+            <span class="coast__hint">Keep scrolling <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          <figure class="postcard" style="--tilt:-2.5deg;--sky1:#35B6F0;--sky2:#C6F4EE;--sea:#19C2B8;--sand:#FBE8BF">
+            <div class="postcard__img" data-img="assets/lifestyle/cooler.webp" role="img" aria-label="A cooler full of Hola Ola cans on the sand at midday"></div>
+            <figcaption><b>11:30 AM</b>The cooler is the clubhouse.</figcaption>
+          </figure>
+          <figure class="postcard" style="--tilt:1.8deg;--sky1:#8EC8F4;--sky2:#FFE3C2;--sea:#5CC3D6;--sand:#F6E2B8">
+            <div class="postcard__img" data-img="assets/lifestyle/tideclock.webp" role="img" aria-label="Six Hola Ola cans arranged like a sundial on the tide line, seen from above"></div>
+            <figcaption><b>Low tide</b>The only clock we own.</figcaption>
+          </figure>
+          <figure class="postcard" style="--tilt:-1.4deg;--sky1:#FF9360;--sky2:#FFD884;--sea:#E8925A;--sand:#F0B56A">
+            <div class="postcard__img" data-img="assets/lifestyle/longboard.webp" role="img" aria-label="Six Hola Ola cans lined up on a longboard at golden hour"></div>
+            <figcaption><b>5:40 PM</b>A longboard makes a fine table.</figcaption>
+          </figure>
+          <figure class="postcard" style="--tilt:2.4deg;--sky1:#070B26;--sky2:#1A2466;--sea:#123A8A;--sand:#151A3E">
+            <div class="postcard__img" data-img="assets/lifestyle/glow.webp" role="img" aria-label="Two Hola Ola cans by a small fire while the waves glow blue at night"></div>
+            <figcaption><b>9:10 PM</b>The sea turns the lights on.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE AD (shown only once assets/ad/hola-ola-ad.mp4 exists) ============ -->
+    <section class="reel" id="reel" aria-labelledby="reelTitle" hidden>
+      <svg class="wave wave--top" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 C 180 6, 360 86, 540 46 S 900 6, 1080 46 S 1320 86, 1440 46 V0 H0Z"/></svg>
+      <div class="reel__head" data-reveal>
+        <p class="eyebrow">Now showing</p>
+        <h2 class="display" id="reelTitle">The ad.</h2>
+        <p class="lede">One long beach day in under twenty seconds. Sound on.</p>
+      </div>
+      <div class="reel__player" data-reveal>
+        <video id="reelVideo" playsinline preload="none" poster="assets/ad/poster.jpg" aria-label="Hola Ola commercial"></video>
+        <button class="reel__play" id="reelPlay" aria-label="Play the Hola Ola ad"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+      </div>
+    </section>
+
+    <!-- ============ BEACH RULES ============ -->
+    <section class="rules" id="rules" aria-labelledby="rulesTitle">
+      <svg class="wave wave--top" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 C 180 6, 360 86, 540 46 S 900 6, 1080 46 S 1320 86, 1440 46 V0 H0Z"/></svg>
+      <div class="rules__head" data-reveal>
+        <p class="eyebrow">House rules</p>
+        <h2 class="display" id="rulesTitle">Beach rules.</h2>
+      </div>
+      <ol class="rules__list">
+        <li data-reveal style="--c:#FFD447"><span>01</span><b>Shoes off.</b><em>Sand is the dress code.</em></li>
+        <li data-reveal style="--c:#B8E356"><span>02</span><b>Phone down.</b><em>The tide has the schedule.</em></li>
+        <li data-reveal style="--c:#FF9A2E"><span>03</span><b>Can cold.</b><em>Bury it in the wet sand if you must.</em></li>
+        <li data-reveal style="--c:#FF4F81"><span>04</span><b>Share the cooler.</b><em>Nobody drinks alone at sunset.</em></li>
+        <li data-reveal style="--c:#3DE0FF"><span>05</span><b>Leave only footprints.</b><em>Every can goes home and back into the loop.</em></li>
+      </ol>
+    </section>
+
+    <!-- ============ SCROLL FILM: crack one open (shown only once its frames exist) ============ -->
+    <section class="film film--short" id="crack" data-film="crack" aria-label="A cold can cracking open in slow motion">
+      <div class="film__sticky">
+        <canvas class="film__canvas" aria-hidden="true"></canvas>
+
+        <div class="chapter chapter--side chapter--left chapter--card ch-light" data-in="0.03" data-out="2">
+          <p class="chapter__time">Feature 02 · The first sip</p>
+          <h2>Crack one open.</h2>
+          <p>Cold enough to fog the lid, with bubbles on the gentle side. Closer to sea foam than to soda pop.</p>
+        </div>
+
+        <div class="chapter chapter--side chapter--right ch-light" data-in="0.42" data-out="2">
+          <ul class="chips chips--stack">
+            <li><b>35</b> calories</li>
+            <li><b>5 g</b> sugar</li>
+            <li><b>0</b> fake sweeteners</li>
+            <li><b>100%</b> recyclable can</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FIND US (night, bioluminescent water) ============ -->
+    <section class="find" id="find" aria-labelledby="findTitle">
+      <video class="find__bg" id="findBg" muted loop playsinline preload="none" poster="assets/loops/glow.jpg" aria-hidden="true"></video>
+      <canvas id="glowCanvas" aria-hidden="true"></canvas>
+      <div class="find__inner" data-reveal>
+        <p class="eyebrow">Coming to coolers near you</p>
+        <h2 class="display" id="findTitle">Say hola<br>to the wave.</h2>
+        <p class="lede">Leave your email and we will tell you when the first cans land. While you are here, drag your cursor through the water.</p>
+        <form class="signup" id="signup" novalidate>
+          <label class="sr" for="email">Email address</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@thebeach.com" required>
+          <button class="btn btn--glow" type="submit">Tell me</button>
+        </form>
+        <p class="signup__msg" id="signupMsg" role="status"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="foot__mark wordmark" aria-hidden="true">Hola Ola</p>
+    <div class="foot__row">
+      <p>Sparkling beach soda. Made by the Pacific in Costa Rica.</p>
+      <nav aria-label="Footer">
+        <a href="#flavors">Flavors</a>
+        <a href="#inside">Inside</a>
+        <a href="#coast">The coast</a>
+        <a href="#rules">Beach rules</a>
+        <a href="#top">Back to sunrise</a>
+      </nav>
+      <p class="foot__legal">© 2026 Hola Ola. Pura vida.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

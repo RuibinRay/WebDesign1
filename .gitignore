@@ -1,0 +1,3 @@
+# Full-size Higgsfield source renders: large, and the site only uses the converted files in assets/
+higgsfield/renders/
+.claude/

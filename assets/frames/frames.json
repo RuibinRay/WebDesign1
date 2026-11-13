@@ -1,0 +1,44 @@
+{
+    "day":  {
+                "desktop":  {
+                                "dir":  "assets/frames/day/d",
+                                "count":  151,
+                                "ext":  "webp",
+                                "pad":  4
+                            },
+                "mobile":  {
+                               "dir":  "assets/frames/day/m",
+                               "count":  151,
+                               "ext":  "webp",
+                               "pad":  4
+                           }
+            },
+    "burst":  {
+                  "desktop":  {
+                                  "dir":  "assets/frames/burst/d",
+                                  "count":  91,
+                                  "ext":  "webp",
+                                  "pad":  4
+                              },
+                  "mobile":  {
+                                 "dir":  "assets/frames/burst/m",
+                                 "count":  91,
+                                 "ext":  "webp",
+                                 "pad":  4
+                             }
+              },
+    "crack":  {
+                  "desktop":  {
+                                  "dir":  "assets/frames/crack/d",
+                                  "count":  91,
+                                  "ext":  "webp",
+                                  "pad":  4
+                              },
+                  "mobile":  {
+                                 "dir":  "assets/frames/crack/m",
+                                 "count":  91,
+                                 "ext":  "webp",
+                                 "pad":  4
+                             }
+              }
+}
