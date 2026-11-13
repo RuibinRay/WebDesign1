@@ -8,7 +8,7 @@
                             },
                 "mobile":  {
                                "dir":  "assets/frames/day/m",
-                               "count":  151,
+                               "count":  150,
                                "ext":  "webp",
                                "pad":  4
                            }

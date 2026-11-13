@@ -33,7 +33,7 @@ Each `<section class="film" data-film="NAME">` is pinned while you scroll throug
 
 | Film | Section | What it shows |
 |---|---|---|
-| `day` | hero | One dolly-in on the can while a whole day passes, dawn to glowing night |
+| `day` | hero | One dolly-in on the can while a whole day passes, dawn to glowing night. Phones get their own film shot vertically (9:16), retimed so its dawn, sunset and night land under the same captions |
 | `burst` | "Real fruit. Real fizz." | A wave and fruit erupting around the can in slow motion |
 | `crack` | "Crack one open." | Macro of the lid cracking open (the section hides itself if this film has no frames) |
 

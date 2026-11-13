@@ -32,6 +32,13 @@ if ($Set -contains 'elements') {
       Extra = '--aspect_ratio|1:1|--resolution|2k|--quality|medium|--background|transparent|--output_format|png' }
   }
 }
+if ($Set -contains 'phone') {
+  foreach ($k in $P.phone) {
+    $specs += @{ Name = $k.id; Model = 'gpt_image_2_6'; Ext = 'png'
+      Prompt = Expand-Prompt $k.prompt $null
+      Extra = "--aspect_ratio|9:16|--resolution|2k|--quality|medium|--output_format|png|--image|$hero" }
+  }
+}
 if ($Set -contains 'lineup') {
   $refs6 = ($P.flavors | ForEach-Object { "--image|$(Join-Path $Renders "ref_can_$($_.id).png")" }) -join '|'
   foreach ($l in $P.lineup) {
