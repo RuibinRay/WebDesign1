@@ -224,7 +224,8 @@
 
     function resize() {
       const r = sticky.getBoundingClientRect();
-      g.DPR = Math.min(window.devicePixelRatio || 1, seq.on ? 1.5 : 2);
+      // draw at the screen's real pixel density (up to 2x, and never wider than 2880 px) so frames are not softened twice
+      g.DPR = Math.min(window.devicePixelRatio || 1, 2, 2880 / Math.max(1, r.width));
       const w = Math.round(r.width * g.DPR), h = Math.round(r.height * g.DPR);
       if (w === g.W && h === g.H) return;
       g.W = canvas.width = w; g.H = canvas.height = h; st.lastDrawn = -1;
@@ -260,6 +261,7 @@
       if (i < 0) return;
       const im = seq.imgs[i], s = Math.max(g.W / im.naturalWidth, g.H / im.naturalHeight);
       const dw = im.naturalWidth * s, dh = im.naturalHeight * s;
+      ctx.imageSmoothingQuality = 'high';   // better resampling when a frame is scaled to the screen
       ctx.drawImage(im, (g.W - dw) / 2, (g.H - dh) / 2, dw, dh);
       st.lastDrawn = p; seq.dirty = false;
     }

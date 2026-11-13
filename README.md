@@ -48,8 +48,10 @@ Each of these is optional: the page checks that the file exists and falls back t
 To add or replace a scroll film:
 
 ```
-powershell -ExecutionPolicy Bypass -File tools\make-frames.ps1 -Name day -Video path\to\film.mp4
+powershell -ExecutionPolicy Bypass -File tools\make-frames.ps1 -Name day -Video path\to\film.mp4 -FirstStill path\to\start-image.png
 ```
+
+Frames keep the film's own resolution, get a light sharpening pass and are saved at WebP quality 80 to 84. `-FirstStill` and `-LastStill` swap in the sharp original image a film was generated from as its first or last frame, which is where the page rests, so the can is crisp whenever nothing is moving. The exact commands used for this site are at the top of the script.
 
 ## Motion setting
 
