@@ -33,6 +33,10 @@
     <div class="nav__right">
       <span class="clock" title="Beach time"><i class="clock__dot" id="clockDot"></i><b id="clockTime">5:30 AM</b><span id="clockPhase">Dawn</span></span>
       <a class="btn btn--small" href="#find">Find us</a>
+      <!-- hidden until hovered or focused: lets a visitor turn the animations down -->
+      <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false" aria-label="Reduce motion" title="Reduce motion">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6v12M15 6v12"/><path class="i-play" d="M8 5.5v13l11-6.5z"/></svg>
+      </button>
     </div>
   </header>
 

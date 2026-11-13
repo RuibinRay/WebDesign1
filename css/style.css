@@ -466,9 +466,30 @@ a { color: inherit; }
   .scrollcue { display: none; }
 }
 
+/* =========================================================
+   MOTION SETTING
+   js/main.js puts .reduce-motion on <html>. Mac and Windows always start at full motion;
+   other devices follow their system setting; the visitor's own choice wins either way.
+   ========================================================= */
+html.reduce-motion { scroll-behavior: auto; }
+.reduce-motion .marquee__track, .reduce-motion .scrollcue i::after { animation: none; }
+.reduce-motion .chapter, .reduce-motion .chapter.is-on { transition: opacity .2s linear; transform: none; }
+html.reduce-motion [data-reveal] { opacity: 1; translate: none; }
+.reduce-motion .stage__loop { display: none; }
+
+/* the reduce-motion button: last thing in the nav, top right. Invisible until hovered or reached
+   with the keyboard; stays faintly visible while motion is reduced so it can be switched back. */
+.motion-toggle { flex: none; width: 34px; height: 34px; display: grid; place-items: center; padding: 0; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; opacity: 0; transition: opacity .25s; }
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
+.motion-toggle[aria-pressed="true"] { opacity: .5; }
+.motion-toggle[aria-pressed="true"]:hover, .motion-toggle[aria-pressed="true"]:focus-visible { opacity: 1; }
+.motion-toggle svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.motion-toggle .i-play { display: none; fill: currentColor; stroke-width: 1.5; }
+.motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+.motion-toggle[aria-pressed="true"] .i-play { display: block; }
+
+/* without JavaScript nothing sets the class, so fall back to the system setting */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .marquee__track, .scrollcue i::after { animation: none; }
-  .chapter, .chapter.is-on { transition: opacity .2s linear; transform: none; }
-  .js [data-reveal] { opacity: 1; translate: none; }
+  html:not(.js) { scroll-behavior: auto; }
+  html:not(.js) .marquee__track, html:not(.js) .scrollcue i::after { animation: none; }
 }

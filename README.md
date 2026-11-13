@@ -51,6 +51,10 @@ To add or replace a scroll film:
 powershell -ExecutionPolicy Bypass -File tools\make-frames.ps1 -Name day -Video path\to\film.mp4
 ```
 
+## Motion setting
+
+On Mac and Windows every animation runs at full by default, even if the operating system's "reduce motion" switch is on. Other devices (phones, tablets) follow their system setting. A visitor can change it with the button at the far right of the nav: it is invisible until hovered or reached with the Tab key, and it stays faintly visible while motion is reduced. The choice is remembered in the browser (`localStorage`, key `holaola.motion`). The logic is at the top of `js/main.js`; the styles are under "MOTION SETTING" in `css/style.css`.
+
 ## Preview locally
 
 ```

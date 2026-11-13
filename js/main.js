@@ -15,7 +15,24 @@
   const lerp = (a, b, t) => a + (b - a) * t;
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
   const bell = (v, a, b, c) => smooth(a, b, v) * (1 - smooth(b, c, v));
-  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Motion is a site setting. On Mac and Windows everything animates at full by default, whatever the
+  // operating system's "reduce motion" switch says; on other devices that switch decides.
+  // A visitor's own choice (the hidden button at the top right of the nav) wins and is remembered.
+  const MOTION_KEY = 'holaola.motion';
+  const platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  const isMacOrWindows = /Win/i.test(platform) || (/Mac/i.test(platform) && !(navigator.maxTouchPoints > 1));   // iPads report "Mac"
+  let savedMotion = null;
+  try { savedMotion = localStorage.getItem(MOTION_KEY); } catch (e) { /* private mode: no memory, still works */ }
+  let RM = savedMotion ? savedMotion === 'reduce' : (isMacOrWindows ? false : matchMedia('(prefers-reduced-motion: reduce)').matches);
+  document.documentElement.classList.toggle('reduce-motion', RM);
+  const onMotionChange = [];
+  function setMotion(reduce) {
+    RM = reduce;
+    document.documentElement.classList.toggle('reduce-motion', RM);
+    try { localStorage.setItem(MOTION_KEY, RM ? 'reduce' : 'full'); } catch (e) { /* ignore */ }
+    onMotionChange.forEach(fn => fn(RM));
+  }
 
   const hex = h => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
   const rgb = c => `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
@@ -535,24 +552,30 @@
       }
       for (const p of parts) { p.x += p.vx * gd; p.y += p.vy * gd; p.vy -= .004; p.life -= .011; if (p.life > 0) dot(p.s, p.x, p.y, p.r * (1.4 - p.life * .4), p.life * .9); }
       parts = parts.filter(p => p.life > 0);
-      if (running && !RM) requestAnimationFrame(frame);
+      raf = running && !RM ? requestAnimationFrame(frame) : 0;   // with motion reduced: one still frame, no loop
     }
+    let raf = 0;
+    const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
     const spawn = (x, y, n) => {
       for (let i = 0; i < n; i++) parts.push({ x: x + (Math.random() - .5) * 26 * gd, y: y + (Math.random() - .5) * 26 * gd, vx: (Math.random() - .5) * 1.2, vy: -Math.random() * .7, life: 1, r: (Math.random() * 16 + 8) * gd, s: Math.random() < .22 ? VI : CY });
       if (parts.length > 460) parts.splice(0, parts.length - 460);
     };
-    if (!RM) findSec.addEventListener('pointermove', e => { const r = findSec.getBoundingClientRect(); spawn((e.clientX - r.left) * gd, (e.clientY - r.top) * gd, 3); });
+    findSec.addEventListener('pointermove', e => { if (RM) return; const r = findSec.getBoundingClientRect(); spawn((e.clientX - r.left) * gd, (e.clientY - r.top) * gd, 3); });
     // the night-beach background video loads when the section gets close and only plays while visible
     const bg = $('#findBg'), bgSrc = 'assets/loops/glow.mp4';
     let bgOk = false;
-    if (!RM) fetch(bgSrc, { method: 'HEAD' }).then(r => { bgOk = r.ok; }).catch(() => {});
+    const syncBg = () => {
+      if (!bgOk) return;
+      if (running && !RM) { if (!bg.src) bg.src = bgSrc; const p = bg.play(); if (p) p.catch(() => {}); } else bg.pause();
+    };
+    fetch(bgSrc, { method: 'HEAD' }).then(r => { bgOk = r.ok; syncBg(); }).catch(() => {});
     new IntersectionObserver(([en]) => {
       const was = running; running = en.isIntersecting;
-      if (running && !was) { size(); requestAnimationFrame(frame); }
-      if (!bgOk) return;
-      if (running) { if (!bg.src) bg.src = bgSrc; const p = bg.play(); if (p) p.catch(() => {}); } else bg.pause();
+      if (running && !was) { size(); kick(); }
+      syncBg();
     }, { threshold: 0 }).observe(findSec);
     window.addEventListener('resize', () => { if (running) size(); });
+    onMotionChange.push(() => { if (running) kick(); syncBg(); });
   }
 
   function initSignup() {
@@ -575,7 +598,22 @@
     video.addEventListener('ended', () => { box.classList.remove('is-playing'); video.controls = false; video.load(); });
   }
 
+  // the hidden reduce-motion button at the top right of the nav
+  function initMotionToggle() {
+    const btn = $('#motionToggle');
+    const paint = () => {
+      const label = RM ? 'Turn animations back on' : 'Reduce motion';
+      btn.setAttribute('aria-pressed', RM); btn.setAttribute('aria-label', label); btn.title = label;
+    };
+    btn.addEventListener('click', () => setMotion(!RM));
+    onMotionChange.push(paint);
+    // the flavor picker's looping video starts or stops with the setting
+    onMotionChange.push(() => { if (fIndex >= 0) applyFlavor(FLAVORS[fIndex]); });
+    paint();
+  }
+
   /* ---------- boot ---------- */
+  initMotionToggle();
   initReel();
   initFlavors();
   initReveals();
